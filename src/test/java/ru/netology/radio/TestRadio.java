@@ -12,10 +12,12 @@ public class TestRadio {
             "0,1",
             "1,2",
             "8,9",
-            "9,0"
+            "9,10",
+            "13,14,",
+            "14,0",
     })
     public void changeToNextStation(int numberStation, int expected) {
-        Radio radio = new Radio();
+        Radio radio = new Radio(15);
         radio.setCurrentStaition(numberStation);
         radio.next();
         int actual = radio.getCurrentStaition();
@@ -27,11 +29,11 @@ public class TestRadio {
     @CsvSource({
             "2,1",
             "1,0",
-            "0,9",
-            "9,8",
+            "0,14",
+            "14,13",
     })
     public void chageToPreviousStation(int numberStation, int expected) {
-        Radio radio = new Radio();
+        Radio radio = new Radio(15);
         radio.setCurrentStaition(numberStation);
         radio.prev();
         int actual = radio.getCurrentStaition();
@@ -46,10 +48,12 @@ public class TestRadio {
             "1,1",
             "8,8",
             "9,9",
-            "10,0"
+            "14,14",
+            "15,0"
+
     })
     public void shuoldSetCurrentStation(int numberStation, int expected) {
-        Radio radio = new Radio();
+        Radio radio = new Radio(15);
         radio.setCurrentStaition(numberStation);
         int actual = radio.getCurrentStaition();
 
@@ -63,8 +67,8 @@ public class TestRadio {
             "0,1",
             "1,2",
             "2,3",
-            "9,10",
-            "10,10"
+            "99,100",
+            "100,100"
     })
     public void shouldIncreaseVolume(int volume, int expected) {
         Radio radio = new Radio();
@@ -92,5 +96,15 @@ public class TestRadio {
 
         Assertions.assertEquals(expected, actual);
     }
+
+    @Test
+
+    public void shouldSetHowMuchStation() {
+        Radio radio = new Radio(25);
+
+        Assertions.assertEquals(25, radio.getHowMuchStation());
+    }
+
 }
+
 
