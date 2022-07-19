@@ -33,7 +33,7 @@ public class TestRadio {
             "14,13",
     })
     public void chageToPreviousStation(int numberStation, int expected) {
-        Radio radio = new Radio(15);
+        Radio radio = new Radio (15);
         radio.setCurrentStaition(numberStation);
         radio.prev();
         int actual = radio.getCurrentStaition();
@@ -100,9 +100,9 @@ public class TestRadio {
     @Test
 
     public void shouldSetHowMuchStation() {
-        Radio radio = new Radio(25);
+        Radio radio = new Radio(15);
 
-        Assertions.assertEquals(25, radio.getHowMuchStation());
+        Assertions.assertEquals(15, radio.getHowMuchStation());
     }
 
 }
