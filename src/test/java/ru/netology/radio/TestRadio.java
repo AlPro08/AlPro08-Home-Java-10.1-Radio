@@ -16,8 +16,24 @@ public class TestRadio {
             "13,14,",
             "14,0",
     })
-    public void changeToNextStation(int numberStation, int expected) {
+    public void changeToNextStationSet(int numberStation, int expected) {
         Radio radio = new Radio(15);
+        radio.setCurrentStaition(numberStation);
+        radio.next();
+        int actual = radio.getCurrentStaition();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0,1",
+            "1,2",
+            "8,9",
+            "9,0",
+    })
+    public void changeToNextStation(int numberStation, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentStaition(numberStation);
         radio.next();
         int actual = radio.getCurrentStaition();
@@ -32,8 +48,23 @@ public class TestRadio {
             "0,14",
             "14,13",
     })
+    public void chageToPreviousStationSet(int numberStation, int expected) {
+        Radio radio = new Radio(15);
+        radio.setCurrentStaition(numberStation);
+        radio.prev();
+        int actual = radio.getCurrentStaition();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "2,1",
+            "1,0",
+            "0,9",
+    })
     public void chageToPreviousStation(int numberStation, int expected) {
-        Radio radio = new Radio (15);
+        Radio radio = new Radio();
         radio.setCurrentStaition(numberStation);
         radio.prev();
         int actual = radio.getCurrentStaition();
@@ -52,8 +83,27 @@ public class TestRadio {
             "15,0"
 
     })
-    public void shuoldSetCurrentStation(int numberStation, int expected) {
+    public void shuoldSetCurrentStationSet(int numberStation, int expected) {
         Radio radio = new Radio(15);
+        radio.setCurrentStaition(numberStation);
+        int actual = radio.getCurrentStaition();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "-1,0",
+            "0,0",
+            "1,1",
+            "8,8",
+            "9,9",
+            "10,0"
+
+    })
+    public void shuoldSetCurrentStation(int numberStation, int expected) {
+        Radio radio = new Radio();
         radio.setCurrentStaition(numberStation);
         int actual = radio.getCurrentStaition();
 
@@ -99,10 +149,18 @@ public class TestRadio {
 
     @Test
 
-    public void shouldSetHowMuchStation() {
+    public void shouldSetHowMuchStationSet() {
         Radio radio = new Radio(15);
 
         Assertions.assertEquals(15, radio.getHowMuchStation());
+    }
+
+    @Test
+
+    public void shouldSetHowMuchStation() {
+        Radio radio = new Radio();
+
+        Assertions.assertEquals(10, radio.getHowMuchStation());
     }
 
 }
